@@ -24,4 +24,12 @@ public class Bird {
         position.add(0, velocity.y, 0);
         velocity.scl(1/dt);
     }
+
+    public Vector3 getPosition() {
+        return position;
+    }
+
+    public Texture getBird() {
+        return bird;
+    }
 }
