@@ -1,2 +1,2 @@
 # FlappyBird
-Clone del videojuego FlappyBird para Android realizado con libGDX.
+Clon del videojuego FlappyBird para Android realizado con libGDX.
