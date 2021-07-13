@@ -4,8 +4,8 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.jorgejnet.flappybird.States.GameStateManager;
-import com.jorgejnet.flappybird.States.MenuState;
+import com.jorgejnet.flappybird.states.GameStateManager;
+import com.jorgejnet.flappybird.states.MenuState;
 
 public class FlappyBird extends ApplicationAdapter {
 

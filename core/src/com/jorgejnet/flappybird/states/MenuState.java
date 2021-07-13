@@ -1,4 +1,4 @@
-package com.jorgejnet.flappybird.States;
+package com.jorgejnet.flappybird.states;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -31,5 +31,11 @@ public class MenuState extends State {
         spriteBatch.draw(background, 0, 0, FlappyBird.WIDTH, FlappyBird.HEIGHT);
         spriteBatch.draw(playButton, (FlappyBird.WIDTH/2)-(playButton.getWidth()/2), (FlappyBird.HEIGHT/2)-(playButton.getHeight()/2));
         spriteBatch.end();
+    }
+
+    @Override
+    public void dispose() {
+        background.dispose();
+        playButton.dispose();
     }
 }

@@ -1,4 +1,4 @@
-package com.jorgejnet.flappybird.States;
+package com.jorgejnet.flappybird.states;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -21,4 +21,6 @@ public abstract class State {
     public abstract void update(float dt);
 
     public abstract void render(SpriteBatch spriteBatch);
+
+    public abstract void dispose();
 }
