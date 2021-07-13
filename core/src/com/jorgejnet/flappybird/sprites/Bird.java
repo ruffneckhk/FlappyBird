@@ -32,4 +32,8 @@ public class Bird {
     public Texture getBird() {
         return bird;
     }
+
+    public void jump() {
+        velocity.y = 250;
+    }
 }
