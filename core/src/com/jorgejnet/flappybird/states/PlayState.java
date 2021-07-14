@@ -44,12 +44,13 @@ public class PlayState extends State {
 
         camera.position.x = bird.getPosition().x + 80;
 
-        for (Tube tube : tubes) {
+        for (int i = 0; i < tubes.size; i++) {
+            Tube tube = tubes.get(i);
             if (camera.position.x - (camera.viewportWidth / 2) > tube.getPosTopTube().x + tube.getTopTube().getWidth()) {
                 tube.reposition(tube.getPosTopTube().x + ((Tube.TUBE_WIDTH + TUBE_SPACING) * TUBE_COUNT));
             }
             if (tube.collides(bird.getBounds())) {
-                gsm.set(new PlayState(gsm));
+                gsm.set(new MenuState(gsm));
             }
         }
 
@@ -72,6 +73,11 @@ public class PlayState extends State {
 
     @Override
     public void dispose() {
-
+        bg.dispose();
+        bird.dispose();
+        for (Tube tube : tubes) {
+            tube.dispose();
+        }
+        System.out.println("PLAY STATE DISPOSE");
     }
 }

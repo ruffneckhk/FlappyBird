@@ -78,4 +78,9 @@ public class Tube {
     public void setPosBotTube(Vector2 posBotTube) {
         this.posBotTube = posBotTube;
     }
+
+    public void dispose() {
+        topTube.dispose();
+        bottomTube.dispose();
+    }
 }
