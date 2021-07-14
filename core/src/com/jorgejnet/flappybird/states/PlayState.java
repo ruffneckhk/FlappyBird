@@ -3,6 +3,7 @@ package com.jorgejnet.flappybird.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.jorgejnet.flappybird.FlappyBird;
 import com.jorgejnet.flappybird.sprites.Bird;
@@ -16,6 +17,10 @@ public class PlayState extends State {
     private Bird bird;
     private Texture bg;
 
+    private Texture ground;
+    private Vector2 groundPos1;
+    private Vector2 groundPos2;
+
     private Array<Tube> tubes;
 
     public PlayState(GameStateManager gameStateManager) {
@@ -24,6 +29,9 @@ public class PlayState extends State {
         camera.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);
         bg = new Texture("bg.png");
         tubes = new Array<Tube>();
+        ground = new Texture("ground.png");
+        groundPos1 = new Vector2(camera.position.x - camera.viewportWidth / 2, 0);
+        groundPos2 = new Vector2((camera.position.x - camera.viewportWidth / 2) + ground.getWidth(), 0);
 
         for (int i = 1; i <= TUBE_COUNT; i++) {
             tubes.add(new Tube(i * (TUBE_SPACING + Tube.TUBE_WIDTH)));
@@ -63,11 +71,13 @@ public class PlayState extends State {
         spriteBatch.begin();
         spriteBatch.draw(bg, camera.position.x - (camera.viewportWidth / 2), camera.position.y - (camera.viewportHeight / 2));
         spriteBatch.draw(bird.getBird(), bird.getPosition().x, bird.getPosition().y);
+
         for (Tube tube : tubes) {
             spriteBatch.draw(tube.getTopTube(), tube.getPosTopTube().x, tube.getPosTopTube().y);
             spriteBatch.draw(tube.getBottomTube(), tube.getPosBotTube().x, tube.getPosBotTube().y);
         }
-
+        spriteBatch.draw(ground, groundPos1.x, groundPos1.y);
+        spriteBatch.draw(ground, groundPos2.x, groundPos2.y);
         spriteBatch.end();
     }
 
