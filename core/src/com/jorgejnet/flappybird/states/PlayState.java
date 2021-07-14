@@ -3,22 +3,32 @@ package com.jorgejnet.flappybird.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
 import com.jorgejnet.flappybird.FlappyBird;
 import com.jorgejnet.flappybird.sprites.Bird;
 import com.jorgejnet.flappybird.sprites.Tube;
 
 public class PlayState extends State {
 
+    private static final int TUBE_SPACING = 125;
+    private static final int TUBE_COUNT = 4;
+
     private Bird bird;
     private Texture bg;
     private Tube tube;
+
+    private Array<Tube> tubes;
 
     public PlayState(GameStateManager gameStateManager) {
         super(gameStateManager);
         bird = new Bird(50, 320);
         camera.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);
         bg = new Texture("bg.png");
-        tube = new Tube(100);
+        tubes = new Array<Tube>();
+
+        for (int i = 1; i <= TUBE_COUNT; i++) {
+            tubes.add(new Tube(i * (TUBE_SPACING + Tube.TUBE_WIDTH)));
+        }
     }
 
     @Override
@@ -32,13 +42,19 @@ public class PlayState extends State {
     public void update(float dt) {
         handleInput();
         bird.update(dt);
+
+        for (Tube tube : tubes) {
+            if (camera.position.x - (camera.viewportWidth / 2) > tube.getPosTopTube().x + tube.getTopTube().getWidth()) {
+                tube.reposition(tube.getPosTopTube().x + ((Tube.TUBE_WIDTH + TUBE_SPACING) * TUBE_COUNT));
+            }
+        }
     }
 
     @Override
     public void render(SpriteBatch spriteBatch) {
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
-        spriteBatch.draw(bg, camera.position.x - (camera.viewportWidth/2), camera.position.y - (camera.viewportHeight/2));
+        spriteBatch.draw(bg, camera.position.x - (camera.viewportWidth / 2), camera.position.y - (camera.viewportHeight / 2));
         //spriteBatch.draw(bg, camera.position.x - (camera.viewportWidth / 2),camera.position.y - (camera.viewportHeight / 2), FlappyBird.WIDTH / 2, FlappyBird.HEIGHT /2);
         spriteBatch.draw(bird.getBird(), bird.getPosition().x, bird.getPosition().y);
         spriteBatch.draw(tube.getTopTube(), tube.getPosTopTube().x, tube.getPosTopTube().y);
