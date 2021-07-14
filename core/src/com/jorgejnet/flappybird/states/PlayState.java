@@ -15,7 +15,6 @@ public class PlayState extends State {
 
     private Bird bird;
     private Texture bg;
-    private Tube tube;
 
     private Array<Tube> tubes;
 
@@ -57,8 +56,11 @@ public class PlayState extends State {
         spriteBatch.draw(bg, camera.position.x - (camera.viewportWidth / 2), camera.position.y - (camera.viewportHeight / 2));
         //spriteBatch.draw(bg, camera.position.x - (camera.viewportWidth / 2),camera.position.y - (camera.viewportHeight / 2), FlappyBird.WIDTH / 2, FlappyBird.HEIGHT /2);
         spriteBatch.draw(bird.getBird(), bird.getPosition().x, bird.getPosition().y);
-        spriteBatch.draw(tube.getTopTube(), tube.getPosTopTube().x, tube.getPosTopTube().y);
-        spriteBatch.draw(tube.getBottomTube(), tube.getPosBotTube().x, tube.getPosBotTube().y);
+        for (Tube tube : tubes) {
+            spriteBatch.draw(tube.getTopTube(), tube.getPosTopTube().x, tube.getPosTopTube().y);
+            spriteBatch.draw(tube.getBottomTube(), tube.getPosBotTube().x, tube.getPosBotTube().y);
+        }
+
         spriteBatch.end();
     }
 
