@@ -28,4 +28,36 @@ public class Tube {
         posTopTube = new Vector2(x, rand.nextInt(FLUCTUATION) + TUBE_GAP + LOWEST_OPENING);
         posBotTube = new Vector2(x, posTopTube.y - TUBE_GAP - bottomTube.getHeight());
     }
+
+    public Texture getTopTube() {
+        return topTube;
+    }
+
+    public void setTopTube(Texture topTube) {
+        this.topTube = topTube;
+    }
+
+    public Texture getBottomTube() {
+        return bottomTube;
+    }
+
+    public void setBottomTube(Texture bottomTube) {
+        this.bottomTube = bottomTube;
+    }
+
+    public Vector2 getPosTopTube() {
+        return posTopTube;
+    }
+
+    public void setPosTopTube(Vector2 posTopTube) {
+        this.posTopTube = posTopTube;
+    }
+
+    public Vector2 getPosBotTube() {
+        return posBotTube;
+    }
+
+    public void setPosBotTube(Vector2 posBotTube) {
+        this.posBotTube = posBotTube;
+    }
 }
